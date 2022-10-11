@@ -1,3 +1,2 @@
-#!/bini/bash
+#!/bin/bash
 cat /etc/passwd
-
