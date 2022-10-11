@@ -1,0 +1,3 @@
+#!/bini/bash
+cat /etc/passwd
+
