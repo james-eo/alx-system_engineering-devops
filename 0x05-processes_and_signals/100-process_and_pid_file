@@ -1,11 +1,21 @@
 #!/usr/bin/env bash
 # Process and PID file
-file=/var/run/holbertonscript.pid
-trap 'echo Y U no love me?!' SIGINT
-trap 'rm $file; exit' SIGQUIT
-trap 'echo I hate the kill command; rm $file; exit' SIGTERM
-echo $$ > "$file"
+
+pid_file="/var/run/myscript.pid"
+
+cleanup_and_exit() {
+    echo "Cleaning up and terminating..."
+    rm -f "$pid_file"
+    exit 0
+}
+
+trap 'echo "I hate the kill command"; cleanup_and_exit;' SIGTERM
+trap 'echo "Y U no love me?!";' SIGINT
+trap 'cleanup_and_exit' SIGQUIT
+
+echo $$ > "$pid_file"
+
 while true; do
-	echo "To infinity and beyond"
-	sleep 2
+    echo "To infinity and beyond"
+    sleep 2
 done
