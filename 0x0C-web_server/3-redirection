@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# installing Nginx on web_01 server
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+
+# add the following configuration to the existing server block
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/www.google.com permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+# Starting Nginx
+sudo service nginx start
