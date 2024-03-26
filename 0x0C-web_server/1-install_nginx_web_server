@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# installing Nginx on web_01 server
+
+sudo apt-get -y update
+sudo apt-get -y install nginx
+
+# Listen on port 80
+sudo ufw allow "Nginx HTTP"
+
+# Creating sample html page
+echo "Hello World!" > /var/www/html/index.html
+
+# Starting Nginx
+sudo service nginx start
