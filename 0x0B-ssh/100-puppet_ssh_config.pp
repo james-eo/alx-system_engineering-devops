@@ -1,10 +1,14 @@
 # 100-puppet_ssh_config.pp
 
-file { '/etc/ssh/ssh_config':
-  ensure  => file,
-  content => "PasswordAuthentication no\nIdentityFile ~/.ssh/school\n",
-  mode    => '0644',
-  owner   => 'root',
-  group   => 'root',
-}
+include stdlib
 
+file_line { 'nopwd':
+  ensure => present,
+  line   => 'PasswordAuthentication no',
+  path   => '/etc/ssh/ssh_config',
+}
+file_line { 'identity':
+  ensure => present,
+  line   => 'IdentityFile ~/.ssh/school',
+  path   => '/etc/ssh/ssh_config',
+}
