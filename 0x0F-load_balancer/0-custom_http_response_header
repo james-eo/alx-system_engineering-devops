@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Configure Nginx server to have a custom 404 page that contains the string Ceci n'est pas une page
+
+# Install nginx
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# configure nginx to listen on port 80
+ufw allow 'Nginx HTTP'
+
+# Creating Sample Page
+echo "Hello World!" > /var/www/html/index.html
+
+# adding configuration to the existing server block
+sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default
+
+# error page and 404 redirect error
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+string_for_replacement="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+sudo sed -i "s/listen 80 default_server;/$string_for_replacement/" /etc/nginx/sites-enabled/default
+
+# configuration of header response
+sudo sed -i '/^http {/a \\tadd_header X-Served-By $hostname;' /etc/nginx/nginx.conf
+
+# Restart Nginx
+service nginx restart
