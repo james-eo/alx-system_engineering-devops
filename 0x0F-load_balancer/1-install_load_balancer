@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # HAProxy installation and configuration on lb-01 server
 # using roundrobin algorithm
 
