@@ -4,7 +4,6 @@
 sudo apt-get -y update
 sudo apt-get -y install nginx
 
-
 # add the following configuration to the existing server block
 
 echo "Hello World!" | sudo tee /var/www/html/index.html
