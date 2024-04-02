@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-# A script that starts apache server in docker
+# A script that starts apache22 server in docker
 sudo service apache2 start
