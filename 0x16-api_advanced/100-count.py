@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 """Recursively queries the Reddit API"""
 
-import requests
 import re
+import requests
 
 
 def count_words(subreddit, word_list, after=None, counts=None):
