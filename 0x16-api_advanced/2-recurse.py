@@ -16,11 +16,11 @@ def recurse(subreddit, hot_list=[], after=None):
         in the previous page of results.
 
     Returns:
-        A list containing the titles of all hot articles for the subreddit.
+        A list containing the titles of all hot articles for subreddit.
         If no results are found, returns None.
     """
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
-    headers = {"User-Agent": "Mozilla/5.0"}  # Custom User-Agent header
+    headers = {"User-Agent": "Mozilla/5.0"}
     params = {"after": after} if after else {}
 
     response = requests.get(url, headers=headers, params=params)
